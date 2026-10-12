@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/scene_item.gd" id="Script"]
+
+[sub_resource type="StandardMaterial3D" id="Tint"]
+resource_local_to_scene = true
+shading_mode = 0
+albedo_color = Color(0.2, 0.75, 1, 1)
+
+[sub_resource type="BoxMesh" id="Mesh"]
+size = Vector3(0.005, 0.005, 1)
+
+[node name="RouteSegment" type="Node3D"]
+script = ExtResource("Script")
+
+[node name="Visual" type="MeshInstance3D" parent="."]
+mesh = SubResource("Mesh")
+material_override = SubResource("Tint")
+cast_shadow = 0
+
+

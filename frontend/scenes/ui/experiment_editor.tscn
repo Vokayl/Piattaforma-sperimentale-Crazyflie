@@ -1,0 +1,751 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/experiment_editor.gd" id="1"]
+
+
+[node name="ExperimentEditor" type="TabContainer"]
+script = ExtResource("1")
+size_flags_horizontal = 3
+
+[node name="Droni" type="ScrollContainer" parent="."]
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="Fields" type="VBoxContainer" parent="Droni"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 9
+
+[node name="ExperimentNameTitle" type="Label" parent="Droni/Fields"]
+layout_mode = 2
+text = "Nome esperimento"
+autowrap_mode = 3
+
+[node name="ExperimentName" type="LineEdit" parent="Droni/Fields"]
+unique_name_in_owner = true
+layout_mode = 2
+placeholder_text = "Nome esperimento"
+
+[node name="DroneList" type="ItemList" parent="Droni/Fields"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(0, 110)
+
+[node name="AddDroneRow" type="HBoxContainer" parent="Droni/Fields"]
+layout_mode = 2
+
+[node name="AddDrone" type="Button" parent="Droni/Fields/AddDroneRow"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "+ Drone"
+
+[node name="RemoveDrone" type="Button" parent="Droni/Fields/AddDroneRow"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Rimuovi"
+
+[node name="EmptyDrones" type="Label" parent="Droni/Fields"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Aggiungi un drone o selezionalo dalla lista."
+autowrap_mode = 3
+
+[node name="DroneProperties" type="VBoxContainer" parent="Droni/Fields"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="DroneIdTitle" type="Label" parent="Droni/Fields/DroneProperties"]
+layout_mode = 2
+text = "Identificativo"
+autowrap_mode = 3
+
+[node name="DroneId" type="LineEdit" parent="Droni/Fields/DroneProperties"]
+unique_name_in_owner = true
+layout_mode = 2
+placeholder_text = "Identificativo"
+
+[node name="DroneEnabled" type="CheckBox" parent="Droni/Fields/DroneProperties"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Partecipa alla simulazione"
+
+[node name="SpawnTitle" type="Label" parent="Droni/Fields/DroneProperties"]
+layout_mode = 2
+text = "Posizione iniziale [m, ROS]"
+autowrap_mode = 3
+
+[node name="SpawnXRow" type="HBoxContainer" parent="Droni/Fields/DroneProperties"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Droni/Fields/DroneProperties/SpawnXRow"]
+layout_mode = 2
+text = "X"
+autowrap_mode = 3
+size_flags_horizontal = 3
+
+[node name="SpawnX" type="SpinBox" parent="Droni/Fields/DroneProperties/SpawnXRow"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(130, 0)
+min_value = -10000
+max_value = 10000
+step = 0.01
+
+[node name="SpawnYRow" type="HBoxContainer" parent="Droni/Fields/DroneProperties"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Droni/Fields/DroneProperties/SpawnYRow"]
+layout_mode = 2
+text = "Y"
+autowrap_mode = 3
+size_flags_horizontal = 3
+
+[node name="SpawnY" type="SpinBox" parent="Droni/Fields/DroneProperties/SpawnYRow"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(130, 0)
+min_value = -10000
+max_value = 10000
+step = 0.01
+
+[node name="SpawnZRow" type="HBoxContainer" parent="Droni/Fields/DroneProperties"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Droni/Fields/DroneProperties/SpawnZRow"]
+layout_mode = 2
+text = "Z"
+autowrap_mode = 3
+size_flags_horizontal = 3
+
+[node name="SpawnZ" type="SpinBox" parent="Droni/Fields/DroneProperties/SpawnZRow"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(130, 0)
+min_value = -10000
+max_value = 10000
+step = 0.01
+
+[node name="RadiusRow" type="HBoxContainer" parent="Droni/Fields/DroneProperties"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Droni/Fields/DroneProperties/RadiusRow"]
+layout_mode = 2
+text = "Raggio di verifica [m]"
+autowrap_mode = 3
+size_flags_horizontal = 3
+
+[node name="Radius" type="SpinBox" parent="Droni/Fields/DroneProperties/RadiusRow"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(130, 0)
+min_value = 0.001
+max_value = 10
+step = 0.001
+
+[node name="UriTitle" type="Label" parent="Droni/Fields/DroneProperties"]
+layout_mode = 2
+text = "URI (solo configurazione, non collegamento hardware)"
+autowrap_mode = 3
+
+[node name="Uri" type="LineEdit" parent="Droni/Fields/DroneProperties"]
+unique_name_in_owner = true
+layout_mode = 2
+placeholder_text = "URI (solo configurazione, non collegamento hardware)"
+
+
+[node name="Missione" type="ScrollContainer" parent="."]
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="Fields" type="VBoxContainer" parent="Missione"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 9
+
+[node name="MissionTitle" type="Label" parent="Missione/Fields"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Seleziona un drone."
+autowrap_mode = 3
+
+[node name="MissionProperties" type="VBoxContainer" parent="Missione/Fields"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="TakeoffHeightRow" type="HBoxContainer" parent="Missione/Fields/MissionProperties"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Missione/Fields/MissionProperties/TakeoffHeightRow"]
+layout_mode = 2
+text = "Quota decollo [m, assoluta]"
+autowrap_mode = 3
+size_flags_horizontal = 3
+
+[node name="TakeoffHeight" type="SpinBox" parent="Missione/Fields/MissionProperties/TakeoffHeightRow"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(130, 0)
+min_value = 0.001
+max_value = 10000
+step = 0.01
+
+[node name="TakeoffDurationRow" type="HBoxContainer" parent="Missione/Fields/MissionProperties"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Missione/Fields/MissionProperties/TakeoffDurationRow"]
+layout_mode = 2
+text = "Durata decollo [s]"
+autowrap_mode = 3
+size_flags_horizontal = 3
+
+[node name="TakeoffDuration" type="SpinBox" parent="Missione/Fields/MissionProperties/TakeoffDurationRow"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(130, 0)
+min_value = 0.1
+max_value = 10000
+step = 0.01
+
+[node name="WaypointList" type="ItemList" parent="Missione/Fields/MissionProperties"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(0, 115)
+
+[node name="AddWaypointRow" type="HBoxContainer" parent="Missione/Fields/MissionProperties"]
+layout_mode = 2
+
+[node name="AddWaypoint" type="Button" parent="Missione/Fields/MissionProperties/AddWaypointRow"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "+ Punto"
+
+[node name="RemoveWaypoint" type="Button" parent="Missione/Fields/MissionProperties/AddWaypointRow"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Rimuovi"
+
+[node name="WaypointUp" type="Button" parent="Missione/Fields/MissionProperties/AddWaypointRow"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Su"
+
+[node name="WaypointDown" type="Button" parent="Missione/Fields/MissionProperties/AddWaypointRow"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Giù"
+
+[node name="WaypointProperties" type="VBoxContainer" parent="Missione/Fields/MissionProperties"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="WaypointTitle" type="Label" parent="Missione/Fields/MissionProperties/WaypointProperties"]
+layout_mode = 2
+text = "Destinazione [m, ROS]"
+autowrap_mode = 3
+
+[node name="WaypointXRow" type="HBoxContainer" parent="Missione/Fields/MissionProperties/WaypointProperties"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Missione/Fields/MissionProperties/WaypointProperties/WaypointXRow"]
+layout_mode = 2
+text = "X"
+autowrap_mode = 3
+size_flags_horizontal = 3
+
+[node name="WaypointX" type="SpinBox" parent="Missione/Fields/MissionProperties/WaypointProperties/WaypointXRow"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(130, 0)
+min_value = -10000
+max_value = 10000
+step = 0.01
+
+[node name="WaypointYRow" type="HBoxContainer" parent="Missione/Fields/MissionProperties/WaypointProperties"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Missione/Fields/MissionProperties/WaypointProperties/WaypointYRow"]
+layout_mode = 2
+text = "Y"
+autowrap_mode = 3
+size_flags_horizontal = 3
+
+[node name="WaypointY" type="SpinBox" parent="Missione/Fields/MissionProperties/WaypointProperties/WaypointYRow"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(130, 0)
+min_value = -10000
+max_value = 10000
+step = 0.01
+
+[node name="WaypointZRow" type="HBoxContainer" parent="Missione/Fields/MissionProperties/WaypointProperties"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Missione/Fields/MissionProperties/WaypointProperties/WaypointZRow"]
+layout_mode = 2
+text = "Z"
+autowrap_mode = 3
+size_flags_horizontal = 3
+
+[node name="WaypointZ" type="SpinBox" parent="Missione/Fields/MissionProperties/WaypointProperties/WaypointZRow"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(130, 0)
+min_value = -10000
+max_value = 10000
+step = 0.01
+
+[node name="WaypointYawRow" type="HBoxContainer" parent="Missione/Fields/MissionProperties/WaypointProperties"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Missione/Fields/MissionProperties/WaypointProperties/WaypointYawRow"]
+layout_mode = 2
+text = "Yaw [radianti]"
+autowrap_mode = 3
+size_flags_horizontal = 3
+
+[node name="WaypointYaw" type="SpinBox" parent="Missione/Fields/MissionProperties/WaypointProperties/WaypointYawRow"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(130, 0)
+min_value = -3.141592653589793
+max_value = 3.141592653589793
+step = 0.01
+
+[node name="WaypointDurationRow" type="HBoxContainer" parent="Missione/Fields/MissionProperties/WaypointProperties"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Missione/Fields/MissionProperties/WaypointProperties/WaypointDurationRow"]
+layout_mode = 2
+text = "Durata trasferimento [s]"
+autowrap_mode = 3
+size_flags_horizontal = 3
+
+[node name="WaypointDuration" type="SpinBox" parent="Missione/Fields/MissionProperties/WaypointProperties/WaypointDurationRow"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(130, 0)
+min_value = 0.1
+max_value = 10000
+step = 0.01
+
+[node name="WaypointHoldRow" type="HBoxContainer" parent="Missione/Fields/MissionProperties/WaypointProperties"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Missione/Fields/MissionProperties/WaypointProperties/WaypointHoldRow"]
+layout_mode = 2
+text = "Sosta [s]"
+autowrap_mode = 3
+size_flags_horizontal = 3
+
+[node name="WaypointHold" type="SpinBox" parent="Missione/Fields/MissionProperties/WaypointProperties/WaypointHoldRow"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(130, 0)
+min_value = 0
+max_value = 10000
+step = 0.01
+
+[node name="LandHeightRow" type="HBoxContainer" parent="Missione/Fields/MissionProperties"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Missione/Fields/MissionProperties/LandHeightRow"]
+layout_mode = 2
+text = "Quota atterraggio [m]"
+autowrap_mode = 3
+size_flags_horizontal = 3
+
+[node name="LandHeight" type="SpinBox" parent="Missione/Fields/MissionProperties/LandHeightRow"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(130, 0)
+min_value = 0
+max_value = 10000
+step = 0.01
+
+[node name="LandDurationRow" type="HBoxContainer" parent="Missione/Fields/MissionProperties"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Missione/Fields/MissionProperties/LandDurationRow"]
+layout_mode = 2
+text = "Durata atterraggio [s]"
+autowrap_mode = 3
+size_flags_horizontal = 3
+
+[node name="LandDuration" type="SpinBox" parent="Missione/Fields/MissionProperties/LandDurationRow"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(130, 0)
+min_value = 0.1
+max_value = 10000
+step = 0.01
+
+[node name="Scenario" type="ScrollContainer" parent="."]
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="Fields" type="VBoxContainer" parent="Scenario"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 9
+
+[node name="FrameHint" type="Label" parent="Scenario/Fields"]
+layout_mode = 2
+text = "Coordinate ROS nel riferimento fisso world: Z verticale."
+autowrap_mode = 3
+
+[node name="BoundsProperties" type="VBoxContainer" parent="Scenario/Fields"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="BoundsMinTitle" type="Label" parent="Scenario/Fields/BoundsProperties"]
+layout_mode = 2
+text = "Limiti minimi dei centri [m, ROS]"
+autowrap_mode = 3
+
+[node name="BoundsMinXRow" type="HBoxContainer" parent="Scenario/Fields/BoundsProperties"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Scenario/Fields/BoundsProperties/BoundsMinXRow"]
+layout_mode = 2
+text = "X"
+autowrap_mode = 3
+size_flags_horizontal = 3
+
+[node name="BoundsMinX" type="SpinBox" parent="Scenario/Fields/BoundsProperties/BoundsMinXRow"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(130, 0)
+min_value = -10000
+max_value = 10000
+step = 0.01
+
+[node name="BoundsMinYRow" type="HBoxContainer" parent="Scenario/Fields/BoundsProperties"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Scenario/Fields/BoundsProperties/BoundsMinYRow"]
+layout_mode = 2
+text = "Y"
+autowrap_mode = 3
+size_flags_horizontal = 3
+
+[node name="BoundsMinY" type="SpinBox" parent="Scenario/Fields/BoundsProperties/BoundsMinYRow"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(130, 0)
+min_value = -10000
+max_value = 10000
+step = 0.01
+
+[node name="BoundsMinZRow" type="HBoxContainer" parent="Scenario/Fields/BoundsProperties"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Scenario/Fields/BoundsProperties/BoundsMinZRow"]
+layout_mode = 2
+text = "Z"
+autowrap_mode = 3
+size_flags_horizontal = 3
+
+[node name="BoundsMinZ" type="SpinBox" parent="Scenario/Fields/BoundsProperties/BoundsMinZRow"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(130, 0)
+min_value = -10000
+max_value = 10000
+step = 0.01
+
+[node name="BoundsMaxTitle" type="Label" parent="Scenario/Fields/BoundsProperties"]
+layout_mode = 2
+text = "Limiti massimi dei centri [m, ROS]"
+autowrap_mode = 3
+
+[node name="BoundsMaxXRow" type="HBoxContainer" parent="Scenario/Fields/BoundsProperties"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Scenario/Fields/BoundsProperties/BoundsMaxXRow"]
+layout_mode = 2
+text = "X"
+autowrap_mode = 3
+size_flags_horizontal = 3
+
+[node name="BoundsMaxX" type="SpinBox" parent="Scenario/Fields/BoundsProperties/BoundsMaxXRow"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(130, 0)
+min_value = -10000
+max_value = 10000
+step = 0.01
+
+[node name="BoundsMaxYRow" type="HBoxContainer" parent="Scenario/Fields/BoundsProperties"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Scenario/Fields/BoundsProperties/BoundsMaxYRow"]
+layout_mode = 2
+text = "Y"
+autowrap_mode = 3
+size_flags_horizontal = 3
+
+[node name="BoundsMaxY" type="SpinBox" parent="Scenario/Fields/BoundsProperties/BoundsMaxYRow"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(130, 0)
+min_value = -10000
+max_value = 10000
+step = 0.01
+
+[node name="BoundsMaxZRow" type="HBoxContainer" parent="Scenario/Fields/BoundsProperties"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Scenario/Fields/BoundsProperties/BoundsMaxZRow"]
+layout_mode = 2
+text = "Z"
+autowrap_mode = 3
+size_flags_horizontal = 3
+
+[node name="BoundsMaxZ" type="SpinBox" parent="Scenario/Fields/BoundsProperties/BoundsMaxZRow"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(130, 0)
+min_value = -10000
+max_value = 10000
+step = 0.01
+
+[node name="AddBounds" type="Button" parent="Scenario/Fields"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Aggiungi volume di lavoro"
+
+[node name="ObstacleList" type="ItemList" parent="Scenario/Fields"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(0, 100)
+
+[node name="AddObstacleRow" type="HBoxContainer" parent="Scenario/Fields"]
+layout_mode = 2
+
+[node name="AddObstacle" type="Button" parent="Scenario/Fields/AddObstacleRow"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "+ Ostacolo"
+
+[node name="RemoveObstacle" type="Button" parent="Scenario/Fields/AddObstacleRow"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Rimuovi"
+
+[node name="ObstacleProperties" type="VBoxContainer" parent="Scenario/Fields"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="ObstacleIdTitle" type="Label" parent="Scenario/Fields/ObstacleProperties"]
+layout_mode = 2
+text = "Nome ostacolo"
+autowrap_mode = 3
+
+[node name="ObstacleId" type="LineEdit" parent="Scenario/Fields/ObstacleProperties"]
+unique_name_in_owner = true
+layout_mode = 2
+placeholder_text = "Nome ostacolo"
+
+[node name="ObstacleCenterTitle" type="Label" parent="Scenario/Fields/ObstacleProperties"]
+layout_mode = 2
+text = "Centro ostacolo [m, ROS]"
+autowrap_mode = 3
+
+[node name="ObstacleCenterXRow" type="HBoxContainer" parent="Scenario/Fields/ObstacleProperties"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Scenario/Fields/ObstacleProperties/ObstacleCenterXRow"]
+layout_mode = 2
+text = "X"
+autowrap_mode = 3
+size_flags_horizontal = 3
+
+[node name="ObstacleCenterX" type="SpinBox" parent="Scenario/Fields/ObstacleProperties/ObstacleCenterXRow"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(130, 0)
+min_value = -10000
+max_value = 10000
+step = 0.01
+
+[node name="ObstacleCenterYRow" type="HBoxContainer" parent="Scenario/Fields/ObstacleProperties"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Scenario/Fields/ObstacleProperties/ObstacleCenterYRow"]
+layout_mode = 2
+text = "Y"
+autowrap_mode = 3
+size_flags_horizontal = 3
+
+[node name="ObstacleCenterY" type="SpinBox" parent="Scenario/Fields/ObstacleProperties/ObstacleCenterYRow"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(130, 0)
+min_value = -10000
+max_value = 10000
+step = 0.01
+
+[node name="ObstacleCenterZRow" type="HBoxContainer" parent="Scenario/Fields/ObstacleProperties"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Scenario/Fields/ObstacleProperties/ObstacleCenterZRow"]
+layout_mode = 2
+text = "Z"
+autowrap_mode = 3
+size_flags_horizontal = 3
+
+[node name="ObstacleCenterZ" type="SpinBox" parent="Scenario/Fields/ObstacleProperties/ObstacleCenterZRow"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(130, 0)
+min_value = -10000
+max_value = 10000
+step = 0.01
+
+[node name="ObstacleSizeTitle" type="Label" parent="Scenario/Fields/ObstacleProperties"]
+layout_mode = 2
+text = "Dimensioni complete del box [m, ROS]"
+autowrap_mode = 3
+
+[node name="ObstacleSizeXRow" type="HBoxContainer" parent="Scenario/Fields/ObstacleProperties"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Scenario/Fields/ObstacleProperties/ObstacleSizeXRow"]
+layout_mode = 2
+text = "X"
+autowrap_mode = 3
+size_flags_horizontal = 3
+
+[node name="ObstacleSizeX" type="SpinBox" parent="Scenario/Fields/ObstacleProperties/ObstacleSizeXRow"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(130, 0)
+min_value = 0.01
+max_value = 10000
+step = 0.01
+
+[node name="ObstacleSizeYRow" type="HBoxContainer" parent="Scenario/Fields/ObstacleProperties"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Scenario/Fields/ObstacleProperties/ObstacleSizeYRow"]
+layout_mode = 2
+text = "Y"
+autowrap_mode = 3
+size_flags_horizontal = 3
+
+[node name="ObstacleSizeY" type="SpinBox" parent="Scenario/Fields/ObstacleProperties/ObstacleSizeYRow"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(130, 0)
+min_value = 0.01
+max_value = 10000
+step = 0.01
+
+[node name="ObstacleSizeZRow" type="HBoxContainer" parent="Scenario/Fields/ObstacleProperties"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Scenario/Fields/ObstacleProperties/ObstacleSizeZRow"]
+layout_mode = 2
+text = "Z"
+autowrap_mode = 3
+size_flags_horizontal = 3
+
+[node name="ObstacleSizeZ" type="SpinBox" parent="Scenario/Fields/ObstacleProperties/ObstacleSizeZRow"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(130, 0)
+min_value = 0.01
+max_value = 10000
+step = 0.01
+
+[node name="CriteriaTitle" type="Label" parent="Scenario/Fields"]
+layout_mode = 2
+text = "Criteri di valutazione dell'esperimento"
+autowrap_mode = 3
+
+[node name="SeparationRow" type="HBoxContainer" parent="Scenario/Fields"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Scenario/Fields/SeparationRow"]
+layout_mode = 2
+text = "Separazione minima tra centri [m]"
+autowrap_mode = 3
+size_flags_horizontal = 3
+
+[node name="Separation" type="SpinBox" parent="Scenario/Fields/SeparationRow"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(130, 0)
+min_value = 0
+max_value = 10000
+step = 0.01
+
+[node name="ToleranceRow" type="HBoxContainer" parent="Scenario/Fields"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Scenario/Fields/ToleranceRow"]
+layout_mode = 2
+text = "Tolleranza posizione [m]"
+autowrap_mode = 3
+size_flags_horizontal = 3
+
+[node name="Tolerance" type="SpinBox" parent="Scenario/Fields/ToleranceRow"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(130, 0)
+min_value = 0
+max_value = 10000
+step = 0.01
+
+[node name="YawToleranceRow" type="HBoxContainer" parent="Scenario/Fields"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Scenario/Fields/YawToleranceRow"]
+layout_mode = 2
+text = "Tolleranza yaw ai waypoint [gradi]"
+autowrap_mode = 3
+size_flags_horizontal = 3
+
+[node name="YawTolerance" type="SpinBox" parent="Scenario/Fields/YawToleranceRow"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(130, 0)
+min_value = 0
+max_value = 180
+step = 0.1
+
+[node name="MaxGapRow" type="HBoxContainer" parent="Scenario/Fields"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Scenario/Fields/MaxGapRow"]
+layout_mode = 2
+text = "Intervallo massimo fra campioni [s]"
+autowrap_mode = 3
+size_flags_horizontal = 3
+
+[node name="MaxGap" type="SpinBox" parent="Scenario/Fields/MaxGapRow"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(130, 0)
+min_value = 0.04
+max_value = 10000
+step = 0.01
+
+
+[connection signal="item_selected" from="Droni/Fields/DroneList" to="." method="_select_drone"]
+[connection signal="pressed" from="Droni/Fields/AddDroneRow/AddDrone" to="." method="_add_drone"]
+[connection signal="pressed" from="Droni/Fields/AddDroneRow/RemoveDrone" to="." method="_remove_drone"]
+[connection signal="toggled" from="Droni/Fields/DroneProperties/DroneEnabled" to="." method="_enabled_changed"]
+[connection signal="item_selected" from="Missione/Fields/MissionProperties/WaypointList" to="." method="_select_waypoint"]
+[connection signal="pressed" from="Missione/Fields/MissionProperties/AddWaypointRow/AddWaypoint" to="." method="_add_waypoint"]
+[connection signal="pressed" from="Missione/Fields/MissionProperties/AddWaypointRow/RemoveWaypoint" to="." method="_remove_waypoint"]
+[connection signal="pressed" from="Missione/Fields/MissionProperties/AddWaypointRow/WaypointUp" to="." method="_waypoint_up"]
+[connection signal="pressed" from="Missione/Fields/MissionProperties/AddWaypointRow/WaypointDown" to="." method="_waypoint_down"]
+[connection signal="pressed" from="Scenario/Fields/AddBounds" to="." method="_add_bounds"]
+[connection signal="item_selected" from="Scenario/Fields/ObstacleList" to="." method="_select_obstacle"]
+[connection signal="pressed" from="Scenario/Fields/AddObstacleRow/AddObstacle" to="." method="_add_obstacle"]
+[connection signal="pressed" from="Scenario/Fields/AddObstacleRow/RemoveObstacle" to="." method="_remove_obstacle"]

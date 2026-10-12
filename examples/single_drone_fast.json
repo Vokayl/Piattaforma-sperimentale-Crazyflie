@@ -1,0 +1,96 @@
+{
+  "name": "single_drone_fast",
+  "scenario": {
+    "bounds": {
+      "min": [
+        -2.0,
+        -2.0,
+        0.0
+      ],
+      "max": [
+        2.0,
+        2.0,
+        2.0
+      ]
+    },
+    "obstacles": []
+  },
+  "drones": [
+    {
+      "id": "cf1",
+      "uri": "radio://0/80/2M/E7E7E7E701",
+      "initial_position": [
+        -0.8,
+        -0.8,
+        0.0
+      ],
+      "enabled": true,
+      "radius": 0.08
+    }
+  ],
+  "missions": {
+    "cf1": {
+      "takeoff": {
+        "height": 1.0,
+        "duration": 0.9
+      },
+      "waypoints": [
+        {
+          "position": [
+            0.8,
+            -0.8,
+            1.0
+          ],
+          "yaw": 0,
+          "duration": 1.0,
+          "hold": 0.0
+        },
+        {
+          "position": [
+            0.8,
+            0.8,
+            1.0
+          ],
+          "yaw": 1.5707963267948966,
+          "duration": 1.0,
+          "hold": 0.0
+        },
+        {
+          "position": [
+            -0.8,
+            0.8,
+            1.0
+          ],
+          "yaw": 3.141592653589793,
+          "duration": 1.0,
+          "hold": 0.0
+        },
+        {
+          "position": [
+            -0.8,
+            -0.8,
+            1.0
+          ],
+          "yaw": 0,
+          "duration": 2.2,
+          "hold": 0.0
+        }
+      ],
+      "land": {
+        "height": 0.04,
+        "duration": 0.9
+      }
+    }
+  },
+  "metadata": {
+    "description": "Variante rapida del percorso quadrato a quattro waypoint: durate dei primi tre trasferimenti ridotte, con geometria, yaw e criteri invariati.",
+    "duration_limit_seconds": 10.0,
+    "timing_description": "Durata nominale 7 s: decollo e atterraggio 0.9 s ciascuno, primi tre trasferimenti da 1 s e ultimo da 2.2 s; nessun waypoint sovrapposto."
+  },
+  "settings": {
+    "target_tolerance": 0.1,
+    "min_separation": 0.25,
+    "max_sample_gap": 0.25,
+    "yaw_tolerance_degrees": 5
+  }
+}

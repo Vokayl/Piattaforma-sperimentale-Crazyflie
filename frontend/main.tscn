@@ -1,0 +1,256 @@
+[gd_scene format=3 uid="uid://cx5ywul22eqos"]
+
+[ext_resource type="Script" uid="uid://bctwrjw7clsb2" path="res://scripts/main.gd" id="1"]
+[ext_resource type="PackedScene" path="res://scenes/ui/experiment_editor.tscn" id="2"]
+[ext_resource type="PackedScene" path="res://scenes/world/scene_view.tscn" id="3"]
+[ext_resource type="Script" uid="uid://c8vi0l6raqxr5" path="res://scripts/backend_bridge.gd" id="4"]
+
+[node name="CrazyfliePlatform" type="Control" unique_id=1479177048]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1")
+
+[node name="Margin" type="MarginContainer" parent="." unique_id=1411062649]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="Layout" type="VBoxContainer" parent="Margin" unique_id=2027409341]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Title" type="Label" parent="Margin/Layout" unique_id=147310252]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Piattaforma CrazyFlie"
+autowrap_mode = 3
+
+[node name="Connection" type="HBoxContainer" parent="Margin/Layout" unique_id=488436968]
+layout_mode = 2
+
+[node name="HostField" type="LineEdit" parent="Margin/Layout/Connection" unique_id=862357756]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(280, 0)
+layout_mode = 2
+text = "127.0.0.1"
+
+[node name="PortField" type="SpinBox" parent="Margin/Layout/Connection" unique_id=809470544]
+unique_name_in_owner = true
+layout_mode = 2
+min_value = 1.0
+max_value = 65535.0
+value = 8870.0
+
+[node name="Connect" type="Button" parent="Margin/Layout/Connection" unique_id=1341719921]
+layout_mode = 2
+text = "Connetti"
+
+[node name="Guide" type="Button" parent="Margin/Layout/Connection" unique_id=143480033]
+visible = false
+layout_mode = 2
+text = "Guida d’uso"
+
+[node name="ConnectionHint" type="Label" parent="Margin/Layout/Connection" unique_id=128249973]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+text = "HTTP · Ubuntu locale o LAN controllata. Solo simulazione."
+autowrap_mode = 3
+
+[node name="Toolbar" type="HBoxContainer" parent="Margin/Layout" unique_id=802080812]
+layout_mode = 2
+
+[node name="NewButton" type="Button" parent="Margin/Layout/Toolbar" unique_id=2142800756]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Nuovo"
+
+[node name="OpenButton" type="Button" parent="Margin/Layout/Toolbar" unique_id=761782199]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Apri JSON"
+
+[node name="SaveButton" type="Button" parent="Margin/Layout/Toolbar" unique_id=1294059821]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Salva JSON"
+
+[node name="RunButton" type="Button" parent="Margin/Layout/Toolbar" unique_id=1421026657]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Esegui simulazione"
+
+[node name="VerifyButton" type="Button" parent="Margin/Layout/Toolbar" unique_id=1132821507]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "Controlla tutti i segmenti del percorso e il raggio dei droni rispetto agli ostacoli, senza avviare la simulazione."
+text = "Verifica ostacoli"
+
+[node name="StopButton" type="Button" parent="Margin/Layout/Toolbar" unique_id=758329226]
+unique_name_in_owner = true
+layout_mode = 2
+text = "STOP simulazione"
+
+[node name="EditorButton" type="Button" parent="Margin/Layout/Toolbar" unique_id=859771155]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Torna all’editor"
+
+[node name="GeometryStatus" type="Label" parent="Margin/Layout" unique_id=1983432303]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Verifica ostacoli: non eseguita sul documento corrente."
+autowrap_mode = 3
+
+[node name="Workspace" type="HSplitContainer" parent="Margin/Layout" unique_id=1212020084]
+layout_mode = 2
+size_flags_vertical = 3
+split_offsets = PackedInt32Array(430)
+split_offset = 430
+
+[node name="Editor" parent="Margin/Layout/Workspace" unique_id=1854883659 instance=ExtResource("2")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(410, 0)
+layout_mode = 2
+current_tab = 0
+
+[node name="ViewColumn" type="VBoxContainer" parent="Margin/Layout/Workspace" unique_id=880979484]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ViewTools" type="HBoxContainer" parent="Margin/Layout/Workspace/ViewColumn" unique_id=373982033]
+layout_mode = 2
+
+[node name="FocusDrone" type="Button" parent="Margin/Layout/Workspace/ViewColumn/ViewTools" unique_id=17601023]
+layout_mode = 2
+text = "Centra drone"
+
+[node name="Envelopes" type="CheckBox" parent="Margin/Layout/Workspace/ViewColumn/ViewTools" unique_id=1980326024]
+layout_mode = 2
+text = "Mostra ingombri di verifica"
+
+[node name="SceneView" parent="Margin/Layout/Workspace/ViewColumn" unique_id=345037956 instance=ExtResource("3")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(800, 300)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ViewHint" type="Label" parent="Margin/Layout/Workspace/ViewColumn" unique_id=242587235]
+layout_mode = 2
+text = "Destro: orbita · sinistro sul vuoto: sposta vista · rotella: zoom · trascina spawn/waypoint/ostacoli sul piano XY · Ctrl: snap 10 cm.\nLinee sottili e tenui: collegamenti tra waypoint. Tracce spesse e colorate: percorso osservato di ciascun drone."
+autowrap_mode = 3
+
+[node name="Replay" type="HBoxContainer" parent="Margin/Layout/Workspace/ViewColumn" unique_id=236271809]
+layout_mode = 2
+
+[node name="PlayButton" type="Button" parent="Margin/Layout/Workspace/ViewColumn/Replay" unique_id=1303690428]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Play / pausa"
+
+[node name="ReplaySlider" type="HSlider" parent="Margin/Layout/Workspace/ViewColumn/Replay" unique_id=672734972]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+step = 0.01
+
+[node name="ReplayTime" type="Label" parent="Margin/Layout/Workspace/ViewColumn/Replay" unique_id=921364687]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(140, 0)
+layout_mode = 2
+text = "Replay non caricato"
+
+[node name="StatusLabel" type="Label" parent="Margin/Layout" unique_id=2039715141]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Editor locale. Esegui verifica i dati e prepara automaticamente una nuova esecuzione."
+autowrap_mode = 3
+
+[node name="Bottom" type="HSplitContainer" parent="Margin/Layout" unique_id=783340760]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+split_offsets = PackedInt32Array(650)
+split_offset = 650
+
+[node name="Messages" type="RichTextLabel" parent="Margin/Layout/Bottom" unique_id=403317395]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+scroll_following = true
+
+[node name="Archive" type="VBoxContainer" parent="Margin/Layout/Bottom" unique_id=1224909740]
+custom_minimum_size = Vector2(460, 0)
+layout_mode = 2
+
+[node name="ArchiveButtons" type="HBoxContainer" parent="Margin/Layout/Bottom/Archive" unique_id=1362079459]
+layout_mode = 2
+
+[node name="RefreshRuns" type="Button" parent="Margin/Layout/Bottom/Archive/ArchiveButtons" unique_id=1556319657]
+layout_mode = 2
+text = "Aggiorna run"
+
+[node name="LoadReplay" type="Button" parent="Margin/Layout/Bottom/Archive/ArchiveButtons" unique_id=599535691]
+layout_mode = 2
+text = "Apri replay"
+
+[node name="ShowLogs" type="Button" parent="Margin/Layout/Bottom/Archive/ArchiveButtons" unique_id=302155870]
+layout_mode = 2
+text = "Mostra log"
+
+[node name="RunsList" type="ItemList" parent="Margin/Layout/Bottom/Archive" unique_id=564534471]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="OpenDialog" type="FileDialog" parent="." unique_id=979117019]
+unique_name_in_owner = true
+title = "Open a File"
+size = Vector2i(900, 650)
+file_mode = 0
+access = 2
+filters = PackedStringArray("*.json ; Esperimento JSON")
+
+[node name="SaveDialog" type="FileDialog" parent="." unique_id=1655184179]
+unique_name_in_owner = true
+title = "Salva esperimento"
+size = Vector2i(900, 650)
+access = 2
+filters = PackedStringArray("*.json ; Esperimento JSON")
+
+[node name="Bridge" type="Node" parent="." unique_id=1370717094]
+unique_name_in_owner = true
+script = ExtResource("4")
+
+[connection signal="pressed" from="Margin/Layout/Connection/Connect" to="." method="_connect_backend"]
+[connection signal="pressed" from="Margin/Layout/Connection/Guide" to="." method="_open_guide"]
+[connection signal="pressed" from="Margin/Layout/Toolbar/NewButton" to="." method="_new_document"]
+[connection signal="pressed" from="Margin/Layout/Toolbar/OpenButton" to="." method="_open_dialog"]
+[connection signal="pressed" from="Margin/Layout/Toolbar/SaveButton" to="." method="_save_dialog"]
+[connection signal="pressed" from="Margin/Layout/Toolbar/RunButton" to="." method="_run"]
+[connection signal="pressed" from="Margin/Layout/Toolbar/VerifyButton" to="." method="_verify_geometry"]
+[connection signal="pressed" from="Margin/Layout/Toolbar/StopButton" to="." method="_stop"]
+[connection signal="pressed" from="Margin/Layout/Toolbar/EditorButton" to="." method="_return_editor"]
+[connection signal="changed" from="Margin/Layout/Workspace/Editor" to="." method="_document_changed"]
+[connection signal="error" from="Margin/Layout/Workspace/Editor" to="." method="_message"]
+[connection signal="pressed" from="Margin/Layout/Workspace/ViewColumn/ViewTools/FocusDrone" to="." method="_focus_drone"]
+[connection signal="toggled" from="Margin/Layout/Workspace/ViewColumn/ViewTools/Envelopes" to="." method="_toggle_envelopes"]
+[connection signal="moved" from="Margin/Layout/Workspace/ViewColumn/SceneView" to="." method="_moved"]
+[connection signal="selected" from="Margin/Layout/Workspace/ViewColumn/SceneView" to="." method="_selected"]
+[connection signal="pressed" from="Margin/Layout/Workspace/ViewColumn/Replay/PlayButton" to="." method="_play_pause"]
+[connection signal="value_changed" from="Margin/Layout/Workspace/ViewColumn/Replay/ReplaySlider" to="." method="_seek"]
+[connection signal="pressed" from="Margin/Layout/Bottom/Archive/ArchiveButtons/RefreshRuns" to="." method="_refresh_runs"]
+[connection signal="pressed" from="Margin/Layout/Bottom/Archive/ArchiveButtons/LoadReplay" to="." method="_load_replay"]
+[connection signal="pressed" from="Margin/Layout/Bottom/Archive/ArchiveButtons/ShowLogs" to="." method="_show_logs"]
+[connection signal="file_selected" from="OpenDialog" to="." method="_open_file"]
+[connection signal="file_selected" from="SaveDialog" to="." method="_save_file"]

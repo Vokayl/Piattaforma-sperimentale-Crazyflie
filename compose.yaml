@@ -1,0 +1,14 @@
+services:
+  backend:
+    build: .
+    init: true
+    user: "${CFP_UID:-1000}:${CFP_GID:-1000}"
+    environment:
+      # Ascolto interno al container; la porta sul computer resta solo locale.
+      CFP_HOST: 0.0.0.0
+      CFP_DATA_DIR: /data
+    ports:
+      - "127.0.0.1:8870:8870"
+    volumes:
+      - ./data:/data
+    stop_grace_period: 30s

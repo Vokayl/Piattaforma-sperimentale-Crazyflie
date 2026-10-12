@@ -1,0 +1,53 @@
+[gd_scene load_steps=7 format=3]
+
+[ext_resource type="Script" path="res://scripts/scene_item.gd" id="Script"]
+[ext_resource type="PackedScene" path="res://assets/Crazyflie_2_1.glb" id="Model"]
+
+[sub_resource type="StandardMaterial3D" id="Tint"]
+resource_local_to_scene = true
+shading_mode = 0
+albedo_color = Color(0.2, 0.75, 1.0, 1)
+
+[sub_resource type="StandardMaterial3D" id="EnvelopeMat"]
+resource_local_to_scene = true
+shading_mode = 0
+albedo_color = Color(0.2, 0.75, 1.0, 0.12)
+transparency = 1
+cull_mode = 2
+
+
+[sub_resource type="SphereMesh" id="Sphere"]
+radius = 1.0
+height = 2.0
+radial_segments = 24
+rings = 12
+
+[sub_resource type="BoxMesh" id="HeadingMesh"]
+size = Vector3(0.14, 0.006, 0.006)
+
+[node name="Drone" type="Node3D"]
+script = ExtResource("Script")
+
+[node name="Model" parent="." instance=ExtResource("Model")]
+
+[node name="Label" type="Label3D" parent="."]
+position = Vector3(0, 0.16, 0)
+text = "cf1"
+font_size = 32
+pixel_size = 0.0025
+billboard = 1
+
+[node name="Heading" type="MeshInstance3D" parent="."]
+position = Vector3(0.07, 0, 0)
+mesh = SubResource("HeadingMesh")
+material_override = SubResource("Tint")
+cast_shadow = 0
+
+[node name="Envelope" type="MeshInstance3D" parent="."]
+visible = false
+scale = Vector3(0.08, 0.08, 0.08)
+mesh = SubResource("Sphere")
+material_override = SubResource("EnvelopeMat")
+cast_shadow = 0
+
+

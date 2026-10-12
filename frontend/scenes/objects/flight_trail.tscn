@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/flight_trail.gd" id="Script"]
+
+[sub_resource type="StandardMaterial3D" id="Tint"]
+resource_local_to_scene = true
+shading_mode = 0
+albedo_color = Color(0.2, 0.75, 1, 1)
+
+[sub_resource type="BoxMesh" id="Segment"]
+size = Vector3(0.02, 0.02, 1)
+
+[sub_resource type="MultiMesh" id="Trail"]
+resource_local_to_scene = true
+transform_format = 1
+mesh = SubResource("Segment")
+visible_instance_count = 0
+
+[node name="FlightTrail" type="MultiMeshInstance3D"]
+multimesh = SubResource("Trail")
+material_override = SubResource("Tint")
+cast_shadow = 0
+script = ExtResource("Script")
+
+[node name="Tip" type="MeshInstance3D" parent="."]
+visible = false
+mesh = SubResource("Segment")
+material_override = SubResource("Tint")
+cast_shadow = 0

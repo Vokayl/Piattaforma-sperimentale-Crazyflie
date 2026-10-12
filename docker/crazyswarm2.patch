@@ -1,0 +1,38 @@
+diff --git a/crazyflie_sim/crazyflie_sim/crazyflie_server.py b/crazyflie_sim/crazyflie_sim/crazyflie_server.py
+index cb460e7..37bf66b 100755
+--- a/crazyflie_sim/crazyflie_sim/crazyflie_server.py
++++ b/crazyflie_sim/crazyflie_sim/crazyflie_server.py
+@@ -15,6 +15,7 @@ from crazyflie_interfaces.srv import GoTo, Land, Takeoff
+ from crazyflie_interfaces.srv import NotifySetpointsStop, StartTrajectory, UploadTrajectory
+ from geometry_msgs.msg import Twist
+ import rclpy
++from rclpy.clock import Clock, ClockType
+ from rclpy.node import Node
+ from std_msgs.msg import String
+ from std_srvs.srv import Empty
+@@ -209,7 +210,9 @@ class CrazyflieServer(Node):
+         # step as fast as possible
+         max_dt = 0.0 if 'max_dt' not in self._ros_parameters['sim'] \
+             else self._ros_parameters['sim']['max_dt']
+-        self.timer = self.create_timer(max_dt, self._timer_callback)
++        # Keep simulation advancing when the host wall clock is adjusted.
++        self.timer = self.create_timer(
++            max_dt, self._timer_callback, clock=Clock(clock_type=ClockType.STEADY_TIME))
+         self.is_shutdown = False
+ 
+     def on_shutdown_callback(self):
+diff --git a/crazyflie_sim/crazyflie_sim/crazyflie_sil.py b/crazyflie_sim/crazyflie_sim/crazyflie_sil.py
+index d082322..96d4418 100644
+--- a/crazyflie_sim/crazyflie_sim/crazyflie_sil.py
++++ b/crazyflie_sim/crazyflie_sim/crazyflie_sil.py
+@@ -132,6 +132,10 @@ class CrazyflieSIL:
+             if self.mode != CrazyflieSIL.MODE_HIGH_POLY:
+                 # We need to update to the latest firmware that has go_to_from.
+                 raise ValueError('goTo from low-level modes not yet supported.')
++            # Landing leaves the SIL mode unchanged, but stops the firmware planner.
++            if not firm.is_traj_eval_valid(
++                    firm.plan_current_goal(self.planner, self.time_func())):
++                raise ValueError('goTo requires an active trajectory; take off first.')
+             self.mode = CrazyflieSIL.MODE_HIGH_POLY
+             try:
+                 firm.plan_go_to(

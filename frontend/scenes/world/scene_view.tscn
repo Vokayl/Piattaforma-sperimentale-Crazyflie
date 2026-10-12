@@ -1,0 +1,43 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/scene_view.gd" id="View"]
+[ext_resource type="PackedScene" path="res://scenes/world/grid.tscn" id="Grid"]
+
+[sub_resource type="Environment" id="Env"]
+background_mode = 1
+background_color = Color(0.055, 0.07, 0.09, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.85, 0.88, 0.92, 1)
+ambient_light_energy = 0.8
+
+[node name="SceneView" type="SubViewportContainer"]
+stretch = true
+mouse_filter = 0
+script = ExtResource("View")
+
+[node name="Viewport" type="SubViewport" parent="."]
+size = Vector2i(1000, 650)
+own_world_3d = true
+render_target_update_mode = 4
+
+[node name="World" type="Node3D" parent="Viewport"]
+
+[node name="Environment" type="WorldEnvironment" parent="Viewport/World"]
+environment = SubResource("Env")
+
+[node name="KeyLight" type="DirectionalLight3D" parent="Viewport/World"]
+rotation = Vector3(-0.959931, -0.436332, 0)
+light_energy = 1.5
+
+[node name="Camera" type="Camera3D" parent="Viewport/World"]
+position = Vector3(2.746, 3.213, 3.260)
+rotation = Vector3(-0.55, 0.7, 0)
+current = true
+near = 0.01
+far = 500.0
+
+[node name="Grid" parent="Viewport/World" instance=ExtResource("Grid")]
+
+[node name="ExperimentContent" type="Node3D" parent="Viewport/World"]
+
+

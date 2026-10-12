@@ -1,0 +1,15 @@
+.git
+.work
+.venv
+data
+.env
+.env.*
+.idea
+.vscode
+**/__pycache__
+**/*.pyc
+**/.godot
+**/*.log
+**/*.egg-info
+build
+dist

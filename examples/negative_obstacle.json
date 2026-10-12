@@ -1,0 +1,236 @@
+{
+  "name": "negative_obstacle",
+  "scenario": {
+    "bounds": {
+      "min": [
+        -2.0,
+        -2.0,
+        0.0
+      ],
+      "max": [
+        2.0,
+        2.0,
+        2.0
+      ]
+    },
+    "obstacles": [
+      {
+        "id": "box_01",
+        "center": [
+          0,
+          0,
+          0.6
+        ],
+        "size": [
+          0.4,
+          0.4,
+          1.2
+        ]
+      }
+    ]
+  },
+  "drones": [
+    {
+      "id": "cf1",
+      "uri": "radio://0/80/2M/E7E7E7E701",
+      "initial_position": [
+        -0.9,
+        -0.8,
+        0.0
+      ],
+      "enabled": true,
+      "radius": 0.08
+    },
+    {
+      "id": "cf2",
+      "uri": "radio://0/80/2M/E7E7E7E702",
+      "initial_position": [
+        0.0,
+        -0.8,
+        0.0
+      ],
+      "enabled": true,
+      "radius": 0.08
+    },
+    {
+      "id": "cf3",
+      "uri": "radio://0/80/2M/E7E7E7E703",
+      "initial_position": [
+        0.9,
+        -0.8,
+        0.0
+      ],
+      "enabled": true,
+      "radius": 0.08
+    }
+  ],
+  "missions": {
+    "cf1": {
+      "takeoff": {
+        "height": 1.0,
+        "duration": 0.9
+      },
+      "waypoints": [
+        {
+          "position": [
+            -1.1,
+            0,
+            1.0
+          ],
+          "yaw": 1.5707963267948966,
+          "duration": 1.0,
+          "hold": 0.0
+        },
+        {
+          "position": [
+            -0.7,
+            0.7,
+            1.0
+          ],
+          "yaw": 0,
+          "duration": 1.0,
+          "hold": 0.0
+        },
+        {
+          "position": [
+            -0.7,
+            -0.5,
+            1.0
+          ],
+          "yaw": -1.5707963267948966,
+          "duration": 1.0,
+          "hold": 0.0
+        },
+        {
+          "position": [
+            -0.9,
+            -0.8,
+            1.0
+          ],
+          "yaw": 0,
+          "duration": 1.1,
+          "hold": 0.0
+        }
+      ],
+      "land": {
+        "height": 0.04,
+        "duration": 0.9
+      }
+    },
+    "cf2": {
+      "takeoff": {
+        "height": 1.0,
+        "duration": 0.9
+      },
+      "waypoints": [
+        {
+          "position": [
+            0.2,
+            0,
+            1.0
+          ],
+          "yaw": 1.5707963267948966,
+          "duration": 1.0,
+          "hold": 0.0
+        },
+        {
+          "position": [
+            -0.2,
+            0.7,
+            1.0
+          ],
+          "yaw": 3.141592653589793,
+          "duration": 1.0,
+          "hold": 0.0
+        },
+        {
+          "position": [
+            -0.2,
+            -0.5,
+            1.0
+          ],
+          "yaw": -1.5707963267948966,
+          "duration": 1.0,
+          "hold": 0.0
+        },
+        {
+          "position": [
+            0.0,
+            -0.8,
+            1.0
+          ],
+          "yaw": 0,
+          "duration": 1.1,
+          "hold": 0.0
+        }
+      ],
+      "land": {
+        "height": 0.04,
+        "duration": 0.9
+      }
+    },
+    "cf3": {
+      "takeoff": {
+        "height": 1.0,
+        "duration": 0.9
+      },
+      "waypoints": [
+        {
+          "position": [
+            0.7,
+            0,
+            1.0
+          ],
+          "yaw": 1.5707963267948966,
+          "duration": 1.0,
+          "hold": 0.0
+        },
+        {
+          "position": [
+            1.1,
+            0.7,
+            1.0
+          ],
+          "yaw": 0,
+          "duration": 1.0,
+          "hold": 0.0
+        },
+        {
+          "position": [
+            1.1,
+            -0.5,
+            1.0
+          ],
+          "yaw": -1.5707963267948966,
+          "duration": 1.0,
+          "hold": 0.0
+        },
+        {
+          "position": [
+            0.9,
+            -0.8,
+            1.0
+          ],
+          "yaw": 0,
+          "duration": 1.1,
+          "hold": 0.0
+        }
+      ],
+      "land": {
+        "height": 0.04,
+        "duration": 0.9
+      }
+    }
+  },
+  "metadata": {
+    "description": "Stesse missioni con svolte; ostacolo alto sul percorso di cf2. Attesa verifica geometrica negativa, distinta dai controlli di esecuzione.",
+    "duration_limit_seconds": 10.0,
+    "timing_description": "Durata nominale 5.9 s: decollo e atterraggio 0.9 s ciascuno, primi tre trasferimenti da 1 s e ultimo da 1.1 s; nessun waypoint sovrapposto."
+  },
+  "settings": {
+    "target_tolerance": 0.1,
+    "min_separation": 0.25,
+    "max_sample_gap": 0.25,
+    "yaw_tolerance_degrees": 5
+  }
+}
