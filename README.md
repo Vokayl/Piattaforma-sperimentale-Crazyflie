@@ -15,7 +15,6 @@ Sono necessari:
 
 - **[Godot 4.6 Standard](https://godotengine.org/)**, per l'interfaccia grafica;
 - **Docker con Compose**, avviato e configurato per container Linux.
-  Su Windows si può usare Docker Desktop con backend WSL 2.
 
 ROS 2 Jazzy, Crazyswarm2 e le dipendenze Python vengono installati nell'immagine
 Docker: non occorre configurarli sul computer che esegue Godot.
